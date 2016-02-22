@@ -2251,7 +2251,7 @@ public class MediaProvider extends ContentProvider {
         // non-public getFatVolumeId method
         if (table == FS_ID) {
             MatrixCursor c = new MatrixCursor(new String[] {"fsid"});
-            c.addRow(new Integer[] {mVolumeId});
+            c.addRow(new Long[] {mVolumeId});
             return c;
         }
 
@@ -5242,7 +5242,7 @@ public class MediaProvider extends ContentProvider {
             } else if (EXTERNAL_VOLUME.equals(volume)) {
                 if (Environment.isExternalStorageRemovable()) {
                     final StorageVolume actualVolume = mStorageManager.getPrimaryVolume();
-                    final int volumeId = actualVolume.getFatVolumeId();
+                    final long volumeId = actualVolume.getFatVolumeId();
 
                     // Must check for failure!
                     // If the volume is not (yet) mounted, this will create a new
@@ -5268,7 +5268,7 @@ public class MediaProvider extends ContentProvider {
                     }
 
                     // generate database name based on volume ID
-                    String dbName = "external-" + Integer.toHexString(volumeId) + ".db";
+                    String dbName = "external-" + Long.toHexString(volumeId) + ".db";
                     helper = new DatabaseHelper(context, dbName, false,
                             false, mObjectRemovedCallback);
                     mVolumeId = volumeId;
@@ -5416,7 +5416,7 @@ public class MediaProvider extends ContentProvider {
     private String mMediaScannerVolume;
 
     // current FAT volume ID
-    private int mVolumeId = -1;
+    private long mVolumeId = -1;
 
     static final String INTERNAL_VOLUME = "internal";
     static final String EXTERNAL_VOLUME = "external";
