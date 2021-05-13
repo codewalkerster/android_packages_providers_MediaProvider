@@ -942,7 +942,6 @@ public class ModernMediaScannerTest {
         }
     }
 
-
     /**
      * Executes a shell command.
      */
